@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { Hero } from "@/components/hero"
+import { PathSelector } from "@/components/path-selector"
 import { Services } from "@/components/services"
 import { About } from "@/components/about"
 import { CoverageAreas } from "@/components/coverage-areas"
@@ -15,6 +16,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-white">
       <Navigation />
       <Hero />
+      <PathSelector />
       <About />
       <Services />
       <Process />
