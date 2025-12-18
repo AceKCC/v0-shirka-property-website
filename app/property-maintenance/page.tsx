@@ -1,4 +1,5 @@
-// ... existing code ...
+"use client"
+
 import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -20,7 +21,6 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-// <CHANGE> Import company constants
 import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function PropertyMaintenancePage() {
@@ -63,7 +63,6 @@ export default function PropertyMaintenancePage() {
     { name: "L&Q", logo: "/images/lq-logo.avif" },
   ]
 
-  // <CHANGE> Softened compliance claims
   const complianceItems = [
     "Gas Safe registered engineers",
     "NICEIC approved electrical contractors",
@@ -98,7 +97,6 @@ export default function PropertyMaintenancePage() {
     },
   ]
 
-  // <CHANGE> Softened FAQ answers
   const faqs = [
     {
       question: "What areas do you cover?",
@@ -144,7 +142,7 @@ export default function PropertyMaintenancePage() {
           <Badge className="bg-red-600 text-white border-0 mb-4">Property Maintenance</Badge>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Trusted Maintenance for
-            <span className="block text-red-600">{"London's Social Housing"}</span>
+            <span className="block text-red-600">London&apos;s Social Housing</span>
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
             Delivering responsive repairs, planned maintenance, and compliance services to housing associations,
@@ -163,7 +161,6 @@ export default function PropertyMaintenancePage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              {/* <CHANGE> Use company constant */}
               <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
                 {PRIMARY_PHONE_DISPLAY}
@@ -171,7 +168,6 @@ export default function PropertyMaintenancePage() {
             </Button>
           </div>
 
-          {/* <CHANGE> Softened key stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
             <div className="text-center">
               <div className="text-3xl font-bold text-red-600">Fast</div>
@@ -236,8 +232,8 @@ export default function PropertyMaintenancePage() {
                 Fully Accredited & <span className="text-red-600">Compliant</span>
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our comprehensive accreditations and certifications ensure we meet high standards for social
-                housing maintenance and repairs.
+                Our comprehensive accreditations and certifications ensure we meet high standards for social housing
+                maintenance and repairs.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {complianceItems.map((item, index) => (
@@ -248,7 +244,6 @@ export default function PropertyMaintenancePage() {
                 ))}
               </div>
             </div>
-            {/* <CHANGE> Softened stats cards */}
             <div className="grid grid-cols-2 gap-4">
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-6 text-center">
@@ -294,7 +289,7 @@ export default function PropertyMaintenancePage() {
               Working With <span className="text-red-600">Housing Providers</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-              {"We work with housing associations and local authorities across London"}
+              We work with housing associations and local authorities across London
             </p>
           </div>
 
@@ -312,7 +307,6 @@ export default function PropertyMaintenancePage() {
             ))}
           </div>
 
-          {/* <CHANGE> Softened platform claims */}
           <div className="bg-gray-50 p-8 text-center max-w-3xl mx-auto">
             <Users className="h-12 w-12 text-red-600 mx-auto mb-4" />
             <h3 className="text-2xl font-bold text-gray-900 mb-3">Trusted Contractor</h3>
@@ -389,4 +383,53 @@ export default function PropertyMaintenancePage() {
               <span className="text-xs font-semibold tracking-wide uppercase">FAQs</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Frequently Aske\
+              Frequently Asked <span className="text-red-600">Questions</span>
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{faq.question}</h3>
+                  <p className="text-gray-600">{faq.answer}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Partner with <span className="text-red-600">Shirka?</span>
+          </h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Get in touch to discuss your property maintenance requirements
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+              <Link href="/contact">
+                Request Commercial Quote
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
+            >
+              <Link href={getPhoneLink()}>
+                <Phone className="mr-2 h-5 w-5" />
+                {PRIMARY_PHONE_DISPLAY}
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
