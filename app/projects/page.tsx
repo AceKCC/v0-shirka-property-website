@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Home, Building2, Hammer, Phone } from "lucide-react"
 import Link from "next/link"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function ProjectsPage() {
   const projects = [
@@ -12,7 +13,7 @@ export default function ProjectsPage() {
       title: "Victorian Terrace Extension",
       category: "Extensions",
       location: "Hackney, East London",
-      image: "/images/internal-repairs.png",
+      image: "/home-extension.jpg",
       description: "Double-storey rear extension creating open-plan kitchen and additional bedroom",
       scope: "Extension, kitchen installation, structural work",
     },
@@ -20,7 +21,7 @@ export default function ProjectsPage() {
       title: "Loft Conversion - Master Suite",
       category: "Loft Extensions",
       location: "Islington, North London",
-      image: "/images/responsive-repairs.png",
+      image: "/loft-bedroom.jpg",
       description: "Dormer loft conversion with ensuite bathroom and fitted wardrobes",
       scope: "Loft conversion, dormer, bathroom, carpentry",
     },
@@ -52,7 +53,7 @@ export default function ProjectsPage() {
       title: "Townhouse Renovation",
       category: "Renovations",
       location: "Stratford, East London",
-      image: "/images/internal-repairs.png",
+      image: "/townhouse-renovation.jpg",
       description: "Modern transformation of dated townhouse including basement",
       scope: "Full refurbishment, basement waterproofing, new systems",
     },
@@ -180,7 +181,7 @@ export default function ProjectsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Start Your Project?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Whether it's property maintenance or a major renovation, we'd love to discuss your requirements.
+            {"Whether it's property maintenance or a major renovation, we'd love to discuss your requirements."}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 text-white">
@@ -195,9 +196,9 @@ export default function ProjectsPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:08001234567">
+              <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
-                Call 0800 123 4567
+                Call {PRIMARY_PHONE_DISPLAY}
               </Link>
             </Button>
           </div>

@@ -7,25 +7,25 @@ export const TrustedPartners = () => {
       logo: "/images/safecontractor-seal.png",
     },
     {
-      name: "CHAS Accredited",
-      logo: "/placeholder.svg?height=60&width=120&text=CHAS",
-    },
-    {
-      name: "Constructionline Registered",
-      logo: "/placeholder.svg?height=60&width=120&text=Constructionline",
-    },
-    {
-      name: "Public Liability Insured",
+      name: "Fully Insured",
       logo: "/placeholder.svg?height=60&width=120&text=Insured",
+    },
+    {
+      name: "Professional Standards",
+      logo: "/placeholder.svg?height=60&width=120&text=Professional",
+    },
+    {
+      name: "Quality Assured",
+      logo: "/placeholder.svg?height=60&width=120&text=Quality",
     },
   ]
 
   return (
     <section className="bg-white py-12">
       <div className="container mx-auto text-center">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-4">Trusted by Councils, Landlords & Developers</h2>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-4">Trusted by Housing Providers Across London</h2>
         <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-          Fully accredited and compliant with UK regulatory standards.
+          Fully insured with professional standards and quality assurance.
         </p>
 
         <div className="flex flex-wrap justify-center items-center gap-8">

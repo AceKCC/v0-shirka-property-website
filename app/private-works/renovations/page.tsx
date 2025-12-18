@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, ArrowRight, Home, Ruler, FileText, Building2, Phone } from "lucide-react"
 import Link from "next/link"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function RenovationsPage() {
   const included = [
@@ -66,7 +67,7 @@ export default function RenovationsPage() {
     {
       question: "How much does a renovation cost?",
       answer:
-        "Costs vary widely based on property size and specification. As a guide, full house renovations range from £40,000-£150,000+. We provide detailed, itemized quotes with no hidden costs.",
+        "Costs vary widely based on property size and specification. We provide detailed, itemized quotes with no hidden costs.",
     },
   ]
 
@@ -109,7 +110,7 @@ export default function RenovationsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <div className="inline-flex items-center bg-red-600 text-white px-4 py-2 mb-4">
-                <span className="text-xs font-semibold tracking-wide uppercase">What's Included</span>
+                <span className="text-xs font-semibold tracking-wide uppercase">{"What's Included"}</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Full Property <span className="text-red-600">Renovation</span>
@@ -138,7 +139,7 @@ export default function RenovationsPage() {
             </div>
 
             <div className="sticky top-32">
-              <QuoteForm serviceType="Renovations" />
+              <QuoteForm serviceType="Renovations" leadSource="private-works/renovations" />
             </div>
           </div>
         </div>
@@ -263,9 +264,9 @@ export default function RenovationsPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:08001234567">
+              <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
-                Call 0800 123 4567
+                Call {PRIMARY_PHONE_DISPLAY}
               </Link>
             </Button>
           </div>

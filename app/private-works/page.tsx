@@ -1,10 +1,12 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { QuoteForm } from "@/components/quote-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Home, Building2, Hammer, CheckCircle, Star, Award, Shield, Phone } from "lucide-react"
 import Link from "next/link"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function PrivateWorksPage() {
   const services = [
@@ -13,7 +15,7 @@ export default function PrivateWorksPage() {
       title: "Extensions",
       description: "Single and double-storey extensions to expand your living space",
       link: "/private-works/extensions",
-      image: "/images/internal-repairs.png",
+      image: "/modern-home-extension-construction.jpg",
       features: ["Planning support", "Full project management", "Quality craftsmanship", "Building regulations"],
     },
     {
@@ -21,7 +23,7 @@ export default function PrivateWorksPage() {
       title: "Loft Extensions",
       description: "Transform your loft into a beautiful, functional living space",
       link: "/private-works/loft-extensions",
-      image: "/images/responsive-repairs.png",
+      image: "/loft-conversion-bedroom-modern.jpg",
       features: ["Dormer conversions", "Velux installations", "Full insulation", "Staircase design"],
     },
     {
@@ -29,16 +31,16 @@ export default function PrivateWorksPage() {
       title: "Renovations",
       description: "Complete property transformations from concept to completion",
       link: "/private-works/renovations",
-      image: "/images/plumbing-works.png",
+      image: "/modern-home-renovation.png",
       features: ["Kitchen & bathroom", "Full refurbishment", "Period restoration", "Modern updates"],
     },
   ]
 
   const trustSignals = [
-    { icon: Shield, text: "Fully Insured & Certified" },
-    { icon: Award, text: "25+ Years Experience" },
-    { icon: Star, text: "4.8/5 Customer Rating" },
-    { icon: CheckCircle, text: "Quality Guarantee" },
+    { icon: Shield, text: "Fully Insured" },
+    { icon: Award, text: "Experienced Team" },
+    { icon: Star, text: "Quality Focused" },
+    { icon: CheckCircle, text: "Clear Communication" },
   ]
 
   return (
@@ -77,9 +79,9 @@ export default function PrivateWorksPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:08001234567">
+              <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
-                0800 123 4567
+                {PRIMARY_PHONE_DISPLAY}
               </Link>
             </Button>
           </div>
@@ -166,7 +168,7 @@ export default function PrivateWorksPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Why Choose Us - Softened claims */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -180,25 +182,36 @@ export default function PrivateWorksPage() {
               <CardContent className="p-6">
                 <Award className="h-12 w-12 text-red-600 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Expert Craftsmanship</h3>
-                <p className="text-gray-600">
-                  25+ years of experience delivering quality construction projects across London
-                </p>
+                <p className="text-gray-600">Experienced team delivering quality construction projects across London</p>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-6">
                 <Shield className="h-12 w-12 text-red-600 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Fully Insured</h3>
-                <p className="text-gray-600">Comprehensive insurance coverage and all necessary certifications</p>
+                <p className="text-gray-600">Comprehensive insurance coverage and relevant certifications</p>
               </CardContent>
             </Card>
             <Card className="text-center">
               <CardContent className="p-6">
                 <Star className="h-12 w-12 text-red-600 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-2">Customer Focused</h3>
-                <p className="text-gray-600">Clear communication, realistic timelines, and quality guaranteed</p>
+                <p className="text-gray-600">Clear communication and realistic timelines</p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Quote Section */}
+      <section id="quote" className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Request a Quote</h2>
+              <p className="text-gray-600">We respond within 1 business day.</p>
+            </div>
+            <QuoteForm leadSource="private-works" />
           </div>
         </div>
       </section>

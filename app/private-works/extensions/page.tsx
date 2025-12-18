@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, ArrowRight, Home, Ruler, FileText, Building2, Phone } from "lucide-react"
 import Link from "next/link"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function ExtensionsPage() {
   const included = [
@@ -21,7 +22,7 @@ export default function ExtensionsPage() {
     "Electrical and plumbing first fix",
     "Plastering and internal finish",
     "Quality materials throughout",
-    "Full insurance and warranties",
+    "Full insurance coverage",
   ]
 
   const processSteps = [
@@ -79,7 +80,9 @@ export default function ExtensionsPage() {
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url(/images/internal-repairs.png)" }}
+            style={{
+              backgroundImage: "url(/placeholder.svg?height=600&width=1200&query=home extension construction site)",
+            }}
           />
         </div>
 
@@ -109,7 +112,7 @@ export default function ExtensionsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <div className="inline-flex items-center bg-red-600 text-white px-4 py-2 mb-4">
-                <span className="text-xs font-semibold tracking-wide uppercase">What's Included</span>
+                <span className="text-xs font-semibold tracking-wide uppercase">{"What's Included"}</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Complete <span className="text-red-600">Extension Service</span>
@@ -131,14 +134,15 @@ export default function ExtensionsPage() {
               <div className="mt-8 p-6 bg-gray-50 border-l-4 border-red-600">
                 <h3 className="font-bold text-gray-900 mb-2">Single & Double-Storey Extensions</h3>
                 <p className="text-gray-600">
-                  Whether you're adding a kitchen extension, extra bedroom, or creating an open-plan living space, we'll
-                  design and build the perfect solution for your home.
+                  {
+                    "Whether you're adding a kitchen extension, extra bedroom, or creating an open-plan living space, we'll design and build the perfect solution for your home."
+                  }
                 </p>
               </div>
             </div>
 
             <div className="sticky top-32">
-              <QuoteForm serviceType="Extensions" />
+              <QuoteForm serviceType="Extensions" leadSource="private-works/extensions" />
             </div>
           </div>
         </div>
@@ -263,9 +267,9 @@ export default function ExtensionsPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:08001234567">
+              <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
-                Call 0800 123 4567
+                Call {PRIMARY_PHONE_DISPLAY}
               </Link>
             </Button>
           </div>

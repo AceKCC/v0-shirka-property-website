@@ -15,8 +15,8 @@ export function Expertise() {
     },
     {
       icon: Award,
-      title: "SLA Compliant Delivery",
-      description: "Consistent service level agreement compliance with transparent pricing and zero-rated VAT.",
+      title: "Professional Delivery",
+      description: "Consistent service delivery with transparent pricing and clear communication.",
     },
     {
       icon: Shield,
@@ -27,7 +27,7 @@ export function Expertise() {
     {
       icon: MapPin,
       title: "London-Wide Coverage",
-      description: "Complete coverage across all 32 London boroughs with local knowledge and rapid response.",
+      description: "Complete coverage across all London boroughs with local knowledge and rapid response.",
     },
     {
       icon: CheckCircle,
@@ -45,7 +45,7 @@ export function Expertise() {
               Our Expertise
             </span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Trusted by London's <span className="text-red-600">Leading Housing Providers</span>
+              Trusted by London's <span className="text-red-600">Housing Providers</span>
             </h2>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
               With extensive experience in London's housing sector, Shirka delivers professional maintenance services
@@ -55,10 +55,10 @@ export function Expertise() {
             <div className="space-y-4">
               {[
                 "Over 1,500 properties successfully serviced",
-                "90-95% attendance rate consistently achieved",
-                "£500K+ in maintenance works delivered",
-                "Trusted by NHG, Sovereign, and Home Group",
-                "Coverage across 30+ London boroughs",
+                "High attendance rate consistently achieved",
+                "Significant maintenance works delivered",
+                "Trusted by multiple housing associations",
+                "Coverage across London boroughs",
               ].map((item, index) => (
                 <div key={index} className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-red-600 mr-3 flex-shrink-0" />

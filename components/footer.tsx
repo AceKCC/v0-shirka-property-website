@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Linkedin, Instagram, Phone, Mail, MapPin } from "lucide-react"
+import { PRIMARY_PHONE_DISPLAY, PRIMARY_EMAIL } from "@/lib/company"
 
 export function Footer() {
   const navigation = [
@@ -54,7 +55,7 @@ export function Footer() {
           <div className="flex items-center justify-center md:justify-between">
             <div className="flex items-center text-white">
               <Phone className="h-4 w-4 mr-2" />
-              <span className="text-sm font-medium">24/7 Emergency Line: 0800 123 4567</span>
+              <span className="text-sm font-medium">24/7 Emergency Line: {PRIMARY_PHONE_DISPLAY}</span>
             </div>
             <div className="hidden md:flex items-center text-white text-sm">
               <span>Need immediate assistance? Call now</span>
@@ -81,11 +82,11 @@ export function Footer() {
               <div className="space-y-3 mb-6">
                 <div className="flex items-center text-gray-300">
                   <Phone className="h-4 w-4 mr-3" style={{ color: "#a50021" }} />
-                  <span>0800 123 4567</span>
+                  <span>{PRIMARY_PHONE_DISPLAY}</span>
                 </div>
                 <div className="flex items-center text-gray-300">
                   <Mail className="h-4 w-4 mr-3" style={{ color: "#a50021" }} />
-                  <span>info@shirkamaintenance.co.uk</span>
+                  <span>{PRIMARY_EMAIL}</span>
                 </div>
                 <div className="flex items-center text-gray-300">
                   <MapPin className="h-4 w-4 mr-3" style={{ color: "#a50021" }} />
@@ -159,7 +160,7 @@ export function Footer() {
           <div className="border-t border-gray-700 mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-sm text-gray-400 mb-4 md:mb-0">
-                © 2024 Shirka Property Maintenance. All rights reserved.
+                © 2025 Shirka Property Maintenance. All rights reserved.
               </div>
               <div className="flex space-x-6 text-sm">
                 <Link href="#" className="text-gray-400 hover:text-white transition-colors">

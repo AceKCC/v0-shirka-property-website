@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { MapPin, Phone, Clock, Users, ArrowRight } from "lucide-react"
+import { PRIMARY_PHONE_DISPLAY, PRIMARY_EMAIL } from "@/lib/company"
 
 export function CoverageAreas() {
   const [activeRegion, setActiveRegion] = useState(0)
@@ -16,9 +17,9 @@ export function CoverageAreas() {
       description: "Our engineers and coordinators work across boroughs to provide unified, high-quality delivery.",
       boroughs: ["Haringey", "Barnet", "Enfield", "Islington"],
       stats: {
-        properties: "600+",
-        response: "< 2 hours",
-        attendance: "94%",
+        properties: "Multiple",
+        response: "Fast",
+        attendance: "Reliable",
       },
     },
     {
@@ -27,9 +28,9 @@ export function CoverageAreas() {
       description: "Expert maintenance services across East London's diverse communities.",
       boroughs: ["Hackney", "Newham", "Tower Hamlets", "Barking"],
       stats: {
-        properties: "500+",
-        response: "< 2.5 hours",
-        attendance: "92%",
+        properties: "Multiple",
+        response: "Fast",
+        attendance: "Reliable",
       },
     },
     {
@@ -38,9 +39,9 @@ export function CoverageAreas() {
       description: "Reliable maintenance solutions across South London's varied housing landscape.",
       boroughs: ["Lambeth", "Southwark", "Lewisham", "and more"],
       stats: {
-        properties: "400+",
-        response: "< 3 hours",
-        attendance: "91%",
+        properties: "Multiple",
+        response: "Fast",
+        attendance: "Reliable",
       },
     },
   ]
@@ -102,7 +103,7 @@ export function CoverageAreas() {
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-red-400 mb-2">{regions[activeRegion].stats.attendance}</div>
-                <div className="text-sm text-gray-300">Attendance Rate</div>
+                <div className="text-sm text-gray-300">Scheduling</div>
               </div>
             </div>
           </div>
@@ -139,9 +140,9 @@ export function CoverageAreas() {
                       <h5 className="font-bold text-gray-900 mb-2">Get in Touch</h5>
                       <div className="flex items-center text-red-600 mb-2">
                         <Phone className="h-4 w-4 mr-2" />
-                        <span className="font-medium">0800 123 4567</span>
+                        <span className="font-medium">{PRIMARY_PHONE_DISPLAY}</span>
                       </div>
-                      <div className="text-sm text-gray-600">info@shirkamaintenance.co.uk</div>
+                      <div className="text-sm text-gray-600">{PRIMARY_EMAIL}</div>
                     </div>
                     <Button className="bg-red-600 hover:bg-red-700 text-white">Get in Touch</Button>
                   </div>
@@ -149,7 +150,7 @@ export function CoverageAreas() {
               </Card>
             </div>
 
-            {/* Stats Cards */}
+            {/* Stats Cards - Softened */}
             <div className="space-y-6">
               <Card className="border-red-200 hover:shadow-lg transition-shadow">
                 <CardContent className="p-8 text-center">
@@ -164,7 +165,7 @@ export function CoverageAreas() {
                 <CardContent className="p-8 text-center">
                   <Clock className="h-12 w-12 text-red-600 mx-auto mb-4" />
                   <div className="text-4xl font-bold text-gray-900 mb-2">{regions[activeRegion].stats.response}</div>
-                  <div className="text-gray-600 font-medium">Average Response Time</div>
+                  <div className="text-gray-600 font-medium">Response Times</div>
                   <p className="text-sm text-gray-500 mt-2">Emergency and urgent maintenance requests</p>
                 </CardContent>
               </Card>
@@ -173,7 +174,7 @@ export function CoverageAreas() {
                 <CardContent className="p-8 text-center">
                   <MapPin className="h-12 w-12 text-red-600 mx-auto mb-4" />
                   <div className="text-4xl font-bold text-gray-900 mb-2">{regions[activeRegion].stats.attendance}</div>
-                  <div className="text-gray-600 font-medium">Attendance Rate</div>
+                  <div className="text-gray-600 font-medium">Scheduling</div>
                   <p className="text-sm text-gray-500 mt-2">Consistent high attendance across all appointments</p>
                 </CardContent>
               </Card>
@@ -191,7 +192,7 @@ export function CoverageAreas() {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h3 className="text-4xl font-bold mb-6">Ready to Partner with Us?</h3>
           <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-            Join London's leading housing providers who trust Shirka for professional, reliable maintenance services.
+            {"Join London's housing providers who trust Shirka for professional, reliable maintenance services."}
           </p>
           <Button
             size="lg"

@@ -111,11 +111,11 @@ export function Testimonials() {
           </div>
         </div>
 
-        {/* Summary Stats */}
+        {/* Summary Stats - Softened claims */}
         <div className="mt-12 bg-white rounded-2xl shadow-lg p-8 max-w-4xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl font-bold text-red-600 mb-2">95%</div>
+              <div className="text-3xl font-bold text-red-600 mb-2">High</div>
               <div className="text-sm text-gray-600">Client Satisfaction</div>
             </div>
             <div>
@@ -123,7 +123,7 @@ export function Testimonials() {
               <div className="text-sm text-gray-600">Properties Maintained</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-red-600 mb-2">50+</div>
+              <div className="text-3xl font-bold text-red-600 mb-2">Multiple</div>
               <div className="text-sm text-gray-600">Housing Partners</div>
             </div>
             <div>

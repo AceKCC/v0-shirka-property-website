@@ -1,17 +1,17 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, CheckCircle, AlertCircle, Loader2 } from "lucide-react"
 
 interface QuoteFormProps {
   serviceType?: string
+  leadSource?: string
 }
 
-export function QuoteForm({ serviceType = "" }: QuoteFormProps) {
+export function QuoteForm({ serviceType = "", leadSource = "private-works" }: QuoteFormProps) {
   const [formData, setFormData] = useState({
     jobType: serviceType,
     postcode: "",
@@ -23,16 +23,90 @@ export function QuoteForm({ serviceType = "" }: QuoteFormProps) {
     phone: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Handle form submission logic here
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+    setErrorMessage("")
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          message: formData.description,
+          leadSource: leadSource,
+          pagePath: typeof window !== "undefined" ? window.location.pathname : "",
+        }),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        // Reset form on success
+        setFormData({
+          jobType: serviceType,
+          postcode: "",
+          budget: "",
+          timeline: "",
+          description: "",
+          name: "",
+          email: "",
+          phone: "",
+        })
+      } else {
+        setSubmitStatus("error")
+        setErrorMessage(result.error || "Something went wrong. Please try again.")
+      }
+    } catch {
+      setSubmitStatus("error")
+      setErrorMessage("Failed to submit. Please check your connection and try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  if (submitStatus === "success") {
+    return (
+      <Card className="shadow-lg border-gray-200">
+        <CardContent className="p-8 text-center">
+          <div className="bg-green-100 p-4 rounded-full w-fit mx-auto mb-4">
+            <CheckCircle className="h-12 w-12 text-green-600" />
+          </div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">Request Received</h3>
+          <p className="text-gray-600 mb-4">Thank you for your enquiry. We respond within 1 business day.</p>
+          <Button
+            onClick={() => setSubmitStatus("idle")}
+            variant="outline"
+            className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white bg-transparent"
+          >
+            Submit Another Request
+          </Button>
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
     <Card className="shadow-lg border-gray-200">
       <CardContent className="p-8">
         <h3 className="text-2xl font-bold text-gray-900 mb-6">Request a Free Quote</h3>
+
+        {submitStatus === "error" && (
+          <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start">
+            <AlertCircle className="h-5 w-5 text-red-600 mr-2 mt-0.5 flex-shrink-0" />
+            <p className="text-red-600 text-sm">{errorMessage}</p>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Job Type</label>
@@ -146,14 +220,21 @@ export function QuoteForm({ serviceType = "" }: QuoteFormProps) {
             />
           </div>
 
-          <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-3">
-            Submit Request
-            <ArrowRight className="ml-2 h-4 w-4" />
+          <Button type="submit" className="w-full bg-red-600 hover:bg-red-700 text-white py-3" disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                Submit Request
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </>
+            )}
           </Button>
 
-          <p className="text-xs text-gray-500 text-center">
-            We'll review your request and get back to you within 24 hours with a detailed quote.
-          </p>
+          <p className="text-xs text-gray-500 text-center">We respond within 1 business day.</p>
         </form>
       </CardContent>
     </Card>

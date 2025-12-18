@@ -1,9 +1,8 @@
+// ... existing code ...
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import {
   Shield,
   Clock,
@@ -21,6 +20,8 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+// <CHANGE> Import company constants
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function PropertyMaintenancePage() {
   const services = [
@@ -62,15 +63,16 @@ export default function PropertyMaintenancePage() {
     { name: "L&Q", logo: "/images/lq-logo.avif" },
   ]
 
+  // <CHANGE> Softened compliance claims
   const complianceItems = [
     "Gas Safe registered engineers",
     "NICEIC approved electrical contractors",
     "CDM 2015 compliant",
-    "ISO 9001 Quality Management",
-    "Constructionline Gold Member",
-    "CHAS accredited",
-    "Public & Employers Liability £10M",
-    "Professional Indemnity £5M",
+    "Quality management systems",
+    "Industry accreditations",
+    "Health & safety accredited",
+    "Full liability coverage",
+    "Professional indemnity insurance",
   ]
 
   const processSteps = [
@@ -96,6 +98,7 @@ export default function PropertyMaintenancePage() {
     },
   ]
 
+  // <CHANGE> Softened FAQ answers
   const faqs = [
     {
       question: "What areas do you cover?",
@@ -103,14 +106,14 @@ export default function PropertyMaintenancePage() {
         "We provide property maintenance services across North, East, and South London, serving housing associations, local councils, and managing agents throughout the region.",
     },
     {
-      question: "Are you Plentific-approved?",
+      question: "Do you work with housing providers?",
       answer:
-        "Yes, Shirka is a fully approved contractor on the Plentific platform, with proven track records in responsive repairs, planned maintenance, and compliance works.",
+        "Yes, Shirka works with housing associations and local authorities across London, delivering responsive repairs, planned maintenance, and compliance works.",
     },
     {
       question: "What are your response times?",
       answer:
-        "We operate tiered SLAs: Emergency (2-4 hours), Urgent (24 hours), Routine (5-7 days). Our average response time is 6 hours with a 92% attendance rate.",
+        "We operate tiered SLAs: Emergency (2-4 hours), Urgent (24 hours), Routine (5-7 days). We aim for fast response times with reliable scheduling.",
     },
     {
       question: "Do you provide out-of-hours services?",
@@ -120,7 +123,7 @@ export default function PropertyMaintenancePage() {
     {
       question: "How do you ensure compliance?",
       answer:
-        "We maintain full compliance through Gas Safe engineers, NICEIC electrical approval, ISO 9001 quality management, and comprehensive insurance coverage with detailed reporting.",
+        "We maintain compliance through Gas Safe engineers, NICEIC electrical approval, quality management systems, and comprehensive insurance coverage with detailed reporting.",
     },
   ]
 
@@ -141,7 +144,7 @@ export default function PropertyMaintenancePage() {
           <Badge className="bg-red-600 text-white border-0 mb-4">Property Maintenance</Badge>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             Trusted Maintenance for
-            <span className="block text-red-600">London's Social Housing</span>
+            <span className="block text-red-600">{"London's Social Housing"}</span>
           </h1>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
             Delivering responsive repairs, planned maintenance, and compliance services to housing associations,
@@ -160,26 +163,27 @@ export default function PropertyMaintenancePage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:08001234567">
+              {/* <CHANGE> Use company constant */}
+              <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
-                0800 123 4567
+                {PRIMARY_PHONE_DISPLAY}
               </Link>
             </Button>
           </div>
 
-          {/* Key Stats */}
+          {/* <CHANGE> Softened key stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600">6hr</div>
-              <div className="text-sm text-gray-300">Avg Response</div>
+              <div className="text-3xl font-bold text-red-600">Fast</div>
+              <div className="text-sm text-gray-300">Response</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600">92%</div>
-              <div className="text-sm text-gray-300">Attendance Rate</div>
+              <div className="text-3xl font-bold text-red-600">Reliable</div>
+              <div className="text-sm text-gray-300">Scheduling</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-red-600">95%</div>
-              <div className="text-sm text-gray-300">Tenant Satisfaction</div>
+              <div className="text-3xl font-bold text-red-600">Quality</div>
+              <div className="text-sm text-gray-300">Workmanship</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-red-600">24/7</div>
@@ -232,7 +236,7 @@ export default function PropertyMaintenancePage() {
                 Fully Accredited & <span className="text-red-600">Compliant</span>
               </h2>
               <p className="text-lg text-gray-600 mb-8">
-                Our comprehensive accreditations and certifications ensure we meet the highest standards for social
+                Our comprehensive accreditations and certifications ensure we meet high standards for social
                 housing maintenance and repairs.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -244,33 +248,34 @@ export default function PropertyMaintenancePage() {
                 ))}
               </div>
             </div>
+            {/* <CHANGE> Softened stats cards */}
             <div className="grid grid-cols-2 gap-4">
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-6 text-center">
                   <Shield className="h-12 w-12 text-red-600 mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-gray-900">£10M</div>
+                  <div className="text-2xl font-bold text-gray-900">Full</div>
                   <div className="text-sm text-gray-600">Liability Cover</div>
                 </CardContent>
               </Card>
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-6 text-center">
                   <Award className="h-12 w-12 text-red-600 mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-gray-900">ISO 9001</div>
+                  <div className="text-2xl font-bold text-gray-900">Accredited</div>
                   <div className="text-sm text-gray-600">Certified</div>
                 </CardContent>
               </Card>
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-6 text-center">
                   <FileCheck className="h-12 w-12 text-red-600 mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-gray-900">100%</div>
-                  <div className="text-sm text-gray-600">Compliant</div>
+                  <div className="text-2xl font-bold text-gray-900">Compliant</div>
+                  <div className="text-sm text-gray-600">Standards</div>
                 </CardContent>
               </Card>
               <Card className="bg-white shadow-lg">
                 <CardContent className="p-6 text-center">
                   <TrendingUp className="h-12 w-12 text-red-600 mx-auto mb-3" />
-                  <div className="text-2xl font-bold text-gray-900">25+</div>
-                  <div className="text-sm text-gray-600">Years Experience</div>
+                  <div className="text-2xl font-bold text-gray-900">Experienced</div>
+                  <div className="text-sm text-gray-600">Team</div>
                 </CardContent>
               </Card>
             </div>
@@ -286,10 +291,10 @@ export default function PropertyMaintenancePage() {
               <span className="text-xs font-semibold tracking-wide uppercase">Trusted Partners</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Working With <span className="text-red-600">Leading Housing Providers</span>
+              Working With <span className="text-red-600">Housing Providers</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-              We're proud to partner with major housing associations and local authorities across London
+              {"We work with housing associations and local authorities across London"}
             </p>
           </div>
 
@@ -307,11 +312,12 @@ export default function PropertyMaintenancePage() {
             ))}
           </div>
 
+          {/* <CHANGE> Softened platform claims */}
           <div className="bg-gray-50 p-8 text-center max-w-3xl mx-auto">
             <Users className="h-12 w-12 text-red-600 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">Plentific-Approved Contractor</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Trusted Contractor</h3>
             <p className="text-gray-600">
-              As an approved contractor on the Plentific platform, we deliver seamless integration with your existing
+              We work with various housing platforms and providers, delivering seamless integration with your existing
               systems and workflows, ensuring efficient job management and reporting.
             </p>
           </div>
@@ -383,52 +389,4 @@ export default function PropertyMaintenancePage() {
               <span className="text-xs font-semibold tracking-wide uppercase">FAQs</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked <span className="text-red-600">Questions</span>
-            </h2>
-          </div>
-
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger className="text-left font-semibold">{faq.question}</AccordionTrigger>
-                <AccordionContent className="text-gray-600">{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Partner With Shirka?</h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Contact us today to discuss your property maintenance requirements and discover how we can support your
-            housing portfolio.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-red-600 hover:bg-red-700 text-white">
-              <Link href="/contact">
-                Request Commercial Enquiry
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
-            >
-              <Link href="tel:08001234567">
-                <Phone className="mr-2 h-5 w-5" />
-                Call 0800 123 4567
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
-    </main>
-  )
-}
+              Frequently Aske\

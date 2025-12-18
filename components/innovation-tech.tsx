@@ -17,68 +17,53 @@ export function InnovationTech() {
       subtitle: "Real-time Updates",
       image: "/placeholder.svg?height=800&width=1200&text=Mobile+Technology",
       description:
-        "Our custom mobile app provides real-time job tracking, instant communication, and digital reporting for complete transparency.",
+        "Our mobile systems provide real-time job tracking, instant communication, and digital reporting for complete transparency.",
       features: [
         "Live job tracking and updates",
         "Digital work orders and signatures",
         "Photo documentation and reporting",
         "Client communication portal",
       ],
-      stats: { efficiency: "40%", satisfaction: "95%", response: "50%" },
+      stats: { efficiency: "Improved", satisfaction: "High", response: "Fast" },
     },
     {
       icon: Cpu,
-      title: "IoT Monitoring",
-      subtitle: "Smart Building Systems",
-      image: "/placeholder.svg?height=800&width=1200&text=IoT+Monitoring",
+      title: "Digital Systems",
+      subtitle: "Efficient Operations",
+      image: "/placeholder.svg?height=800&width=1200&text=Digital+Systems",
       description:
-        "Internet of Things sensors monitor building systems 24/7, predicting maintenance needs before issues occur.",
-      features: [
-        "Predictive maintenance alerts",
-        "Energy consumption monitoring",
-        "Environmental condition tracking",
-        "Automated reporting systems",
-      ],
-      stats: { efficiency: "60%", satisfaction: "90%", response: "75%" },
+        "Modern digital systems help us monitor operations and maintain high service standards across all properties.",
+      features: ["Maintenance scheduling", "Service tracking", "Quality monitoring", "Automated reporting"],
+      stats: { efficiency: "Enhanced", satisfaction: "Strong", response: "Quick" },
     },
     {
       icon: Zap,
-      title: "Energy Management",
-      subtitle: "Sustainable Solutions",
-      image: "/placeholder.svg?height=800&width=1200&text=Energy+Management",
+      title: "Quality Standards",
+      subtitle: "Professional Service",
+      image: "/placeholder.svg?height=800&width=1200&text=Quality+Standards",
       description:
-        "Advanced energy management systems optimize building performance while reducing environmental impact and costs.",
-      features: [
-        "Smart HVAC optimization",
-        "LED lighting automation",
-        "Solar panel integration",
-        "Carbon footprint tracking",
-      ],
-      stats: { efficiency: "50%", satisfaction: "88%", response: "65%" },
+        "Consistent quality standards ensure professional service delivery while maintaining environmental responsibility.",
+      features: ["Professional standards", "Quality assurance", "Environmental awareness", "Performance tracking"],
+      stats: { efficiency: "Reliable", satisfaction: "Excellent", response: "Prompt" },
     },
     {
       icon: Shield,
-      title: "Security Systems",
-      subtitle: "Advanced Protection",
-      image: "/placeholder.svg?height=800&width=1200&text=Security+Systems",
-      description: "State-of-the-art security systems with AI-powered monitoring and instant alert capabilities.",
-      features: [
-        "AI-powered surveillance",
-        "Access control systems",
-        "Intrusion detection",
-        "Emergency response integration",
-      ],
-      stats: { efficiency: "70%", satisfaction: "92%", response: "80%" },
+      title: "Security & Safety",
+      subtitle: "Professional Protection",
+      image: "/placeholder.svg?height=800&width=1200&text=Security+Safety",
+      description: "Professional security and safety protocols with comprehensive insurance and certification.",
+      features: ["Full insurance coverage", "ID-carrying operatives", "Safety protocols", "Quality assurance"],
+      stats: { efficiency: "Strong", satisfaction: "High", response: "Fast" },
     },
   ]
 
   return (
     <section className="py-0 bg-gray-900">
-      {/* Hero Section with Video Background */}
+      {/* Hero Section */}
       <div className="relative h-screen overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920&text=Technology+Innovation')" }}
+          style={{ backgroundImage: "url('/placeholder.svg?height=1080&width=1920&text=Professional+Service')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/40" />
 
@@ -99,13 +84,13 @@ export function InnovationTech() {
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-end pb-24">
           <div className="text-white max-w-4xl">
             <span className="inline-block bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
-              Innovation & Technology
+              Our Approach
             </span>
             <h2 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Future-Ready <span className="text-red-400">Solutions</span>
+              Professional <span className="text-red-400">Service</span>
             </h2>
             <p className="text-2xl text-gray-300 mb-8 leading-relaxed max-w-3xl">
-              Leveraging cutting-edge technology to deliver smarter, more efficient property maintenance solutions.
+              Modern systems and professional standards delivering reliable property maintenance solutions.
             </p>
           </div>
         </div>
@@ -182,9 +167,7 @@ export function InnovationTech() {
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-600 mb-2">
-                    +{technologies[activeTab].stats.efficiency}
-                  </div>
+                  <div className="text-3xl font-bold text-red-600 mb-2">{technologies[activeTab].stats.efficiency}</div>
                   <div className="text-sm text-gray-600">Efficiency Gain</div>
                 </div>
                 <div className="text-center">
@@ -194,7 +177,7 @@ export function InnovationTech() {
                   <div className="text-sm text-gray-600">Client Satisfaction</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-600 mb-2">+{technologies[activeTab].stats.response}</div>
+                  <div className="text-3xl font-bold text-red-600 mb-2">{technologies[activeTab].stats.response}</div>
                   <div className="text-sm text-gray-600">Faster Response</div>
                 </div>
               </div>
@@ -265,16 +248,16 @@ export function InnovationTech() {
       {/* CTA Section */}
       <div className="py-24 bg-red-600 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h3 className="text-4xl font-bold mb-6">Experience the Future Today</h3>
+          <h3 className="text-4xl font-bold mb-6">Experience Professional Service</h3>
           <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-            Discover how our innovative technology solutions can transform your property maintenance experience.
+            Discover how our professional approach can benefit your property maintenance needs.
           </p>
           <Button
             size="lg"
             variant="outline"
             className="border-white text-white hover:bg-white hover:text-red-600 bg-transparent px-8 py-4"
           >
-            Schedule a Demo
+            Get in Touch
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>

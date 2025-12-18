@@ -38,7 +38,7 @@ export function PathSelector() {
                 <div className="space-y-3 mb-6">
                   <div className="flex items-start text-sm">
                     <CheckCircle className="h-4 w-4 text-red-600 mr-2 mt-0.5 flex-shrink-0" />
-                    <span>Plentific-approved contractor</span>
+                    <span>Works with major housing providers</span>
                   </div>
                   <div className="flex items-start text-sm">
                     <CheckCircle className="h-4 w-4 text-red-600 mr-2 mt-0.5 flex-shrink-0" />

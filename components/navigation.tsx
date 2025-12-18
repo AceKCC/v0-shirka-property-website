@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, Phone, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
@@ -78,10 +79,10 @@ export function Navigation() {
           <div className="flex items-center justify-center md:justify-between">
             <div className="flex items-center text-white">
               <Phone className="h-3 w-3 mr-2" />
-              <span className="text-xs font-medium">24/7 Emergency: +44 (0) 800 123 4567</span>
+              <span className="text-xs font-medium">24/7 Emergency: {PRIMARY_PHONE_DISPLAY}</span>
             </div>
             <div className="hidden md:flex items-center text-white text-xs">
-              <span>Serving London's Housing Sector Since 1999</span>
+              <span>Works with housing providers and private homeowners across London</span>
             </div>
           </div>
         </div>
@@ -182,7 +183,7 @@ export function Navigation() {
                   }
                 }}
               >
-                <Link href="tel:08001234567">
+                <Link href={getPhoneLink()}>
                   <Phone className="mr-2 h-4 w-4" />
                   Call Now
                 </Link>
@@ -230,7 +231,7 @@ export function Navigation() {
                     className="w-full text-white font-medium transition-all duration-200"
                     style={{ backgroundColor: "#a50021" }}
                   >
-                    <Link href="tel:08001234567">
+                    <Link href={getPhoneLink()}>
                       <Phone className="mr-2 h-4 w-4" />
                       Call Now
                     </Link>

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { CheckCircle, ArrowRight, Home, Ruler, FileText, Building2, Phone } from "lucide-react"
 import Link from "next/link"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export default function LoftExtensionsPage() {
   const included = [
@@ -79,7 +80,7 @@ export default function LoftExtensionsPage() {
         <div className="absolute inset-0 opacity-20">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url(/images/responsive-repairs.png)" }}
+            style={{ backgroundImage: "url(/placeholder.svg?height=600&width=1200&query=loft conversion bedroom)" }}
           />
         </div>
 
@@ -109,7 +110,7 @@ export default function LoftExtensionsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             <div>
               <div className="inline-flex items-center bg-red-600 text-white px-4 py-2 mb-4">
-                <span className="text-xs font-semibold tracking-wide uppercase">What's Included</span>
+                <span className="text-xs font-semibold tracking-wide uppercase">{"What's Included"}</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                 Complete <span className="text-red-600">Loft Conversion</span>
@@ -131,14 +132,14 @@ export default function LoftExtensionsPage() {
               <div className="mt-8 p-6 bg-gray-50 border-l-4 border-red-600">
                 <h3 className="font-bold text-gray-900 mb-2">Maximum Value, Minimal Disruption</h3>
                 <p className="text-gray-600">
-                  Loft conversions typically add 20% to your property value and can be completed while you remain in
+                  Loft conversions can add significant value to your property and can be completed while you remain in
                   your home, with work contained to the upper floor.
                 </p>
               </div>
             </div>
 
             <div className="sticky top-32">
-              <QuoteForm serviceType="Loft Extensions" />
+              <QuoteForm serviceType="Loft Extensions" leadSource="private-works/loft-extensions" />
             </div>
           </div>
         </div>
@@ -263,9 +264,9 @@ export default function LoftExtensionsPage() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
             >
-              <Link href="tel:08001234567">
+              <Link href={getPhoneLink()}>
                 <Phone className="mr-2 h-5 w-5" />
-                Call 0800 123 4567
+                Call {PRIMARY_PHONE_DISPLAY}
               </Link>
             </Button>
           </div>

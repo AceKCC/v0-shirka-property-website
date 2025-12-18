@@ -20,7 +20,7 @@ export function Platforms() {
       name: "Emergency Response",
       description: "24/7 emergency callout services for urgent maintenance requirements",
       logo: "/images/emergency-response.png",
-      benefits: ["Rapid response times", "Out-of-hours availability", "Priority scheduling"],
+      benefits: ["Rapid response", "Out-of-hours availability", "Priority scheduling"],
     },
   ]
 
@@ -32,8 +32,8 @@ export function Platforms() {
     },
     {
       icon: Star,
-      title: "SLA Compliant Service",
-      description: "Consistent service level agreement compliance with transparent pricing",
+      title: "Professional Service",
+      description: "Consistent service delivery with transparent pricing",
     },
     {
       icon: Users,
@@ -42,8 +42,8 @@ export function Platforms() {
     },
     {
       icon: CheckCircle,
-      title: "Zero-Rated VAT",
-      description: "Transparent pricing structure with zero-rated VAT for qualifying works",
+      title: "Clear Communication",
+      description: "Transparent pricing structure and regular updates throughout projects",
     },
   ]
 
@@ -99,8 +99,8 @@ export function Platforms() {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">Why Housing Providers Choose Shirka</h3>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Our commitment to professional service delivery and housing sector expertise makes us the preferred
-              maintenance partner for London's leading housing providers.
+              Our commitment to professional service delivery and housing sector expertise makes us a trusted
+              maintenance partner for London's housing providers.
             </p>
           </div>
 

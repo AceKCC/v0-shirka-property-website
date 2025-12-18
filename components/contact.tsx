@@ -1,10 +1,74 @@
 "use client"
 
+import type React from "react"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Phone, Mail, MapPin, Clock, Shield, Users, Award, ArrowRight } from "lucide-react"
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  Shield,
+  Users,
+  Award,
+  ArrowRight,
+  CheckCircle,
+  AlertCircle,
+  Loader2,
+} from "lucide-react"
+import { PRIMARY_PHONE_DISPLAY, PRIMARY_EMAIL, getPhoneLink } from "@/lib/company"
 
 export function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    service: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    try {
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          postcode: "N/A", // Not collected in this form
+          message: formData.message,
+          serviceType: formData.service,
+          leadSource: "homepage-contact",
+          pagePath: typeof window !== "undefined" ? window.location.pathname : "",
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+        setFormData({ name: "", email: "", phone: "", service: "", message: "" })
+      } else {
+        const result = await response.json()
+        setSubmitStatus("error")
+        setErrorMessage(result.error || "Something went wrong.")
+      }
+    } catch {
+      setSubmitStatus("error")
+      setErrorMessage("Failed to submit. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="py-16 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
       {/* Swallow Background Elements */}
@@ -22,10 +86,10 @@ export function Contact() {
             <span className="text-xs font-semibold tracking-wide uppercase">Contact</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Let's Talk <span className="text-red-600">Property Maintenance</span>
+            {"Let's Talk"} <span className="text-red-600">Property Maintenance</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Whether you're a housing officer, asset manager or private landlord — we're here to help.
+            {"Whether you're a housing officer, asset manager or private landlord — we're here to help."}
           </p>
         </div>
 
@@ -38,53 +102,104 @@ export function Contact() {
                 <img src="/images/swallow-logo.png" alt="" className="w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
-                  />
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
-                  />
-                  <select className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors">
-                    <option>Service Required</option>
-                    <option>Internal Repairs</option>
-                    <option>Plumbing Works</option>
-                    <option>Damp & Mould</option>
-                    <option>Responsive Repairs</option>
-                    <option>Multiple Services</option>
-                  </select>
-                </div>
-                <textarea
-                  placeholder="Project Details"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors resize-none"
-                ></textarea>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 flex-1">
-                    Send Message
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 bg-transparent"
-                  >
-                    <Phone className="mr-2 h-4 w-4" />
-                    Call Now
+
+              {submitStatus === "success" ? (
+                <div className="text-center py-8">
+                  <div className="bg-green-100 p-4 rounded-full w-fit mx-auto mb-4">
+                    <CheckCircle className="h-12 w-12 text-green-600" />
+                  </div>
+                  <h4 className="text-xl font-bold text-gray-900 mb-2">Message Sent</h4>
+                  <p className="text-gray-600 mb-4">We respond within 1 business day.</p>
+                  <Button onClick={() => setSubmitStatus("idle")} variant="outline">
+                    Send Another Message
                   </Button>
                 </div>
-              </form>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  {submitStatus === "error" && (
+                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start">
+                      <AlertCircle className="h-5 w-5 text-red-600 mr-2 mt-0.5" />
+                      <p className="text-red-600 text-sm">{errorMessage}</p>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                      required
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email Address"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                    />
+                    <select
+                      className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors"
+                      value={formData.service}
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    >
+                      <option>Service Required</option>
+                      <option>Internal Repairs</option>
+                      <option>Plumbing Works</option>
+                      <option>Damp & Mould</option>
+                      <option>Responsive Repairs</option>
+                      <option>Multiple Services</option>
+                    </select>
+                  </div>
+                  <textarea
+                    placeholder="Project Details"
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-4 py-3 border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-colors resize-none"
+                    required
+                  ></textarea>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Button
+                      type="submit"
+                      className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 flex-1"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 bg-transparent"
+                      asChild
+                    >
+                      <a href={getPhoneLink()}>
+                        <Phone className="mr-2 h-4 w-4" />
+                        Call Now
+                      </a>
+                    </Button>
+                  </div>
+                </form>
+              )}
             </CardContent>
           </Card>
 
@@ -98,14 +213,14 @@ export function Contact() {
                   <div className="flex items-center">
                     <Phone className="h-5 w-5 text-red-600 mr-3" />
                     <div>
-                      <div className="font-medium text-gray-900">0800 123 4567</div>
+                      <div className="font-medium text-gray-900">{PRIMARY_PHONE_DISPLAY}</div>
                       <div className="text-sm text-gray-600">Main Line</div>
                     </div>
                   </div>
                   <div className="flex items-center">
                     <Mail className="h-5 w-5 text-red-600 mr-3" />
                     <div>
-                      <div className="font-medium text-gray-900">info@shirkamaintenance.co.uk</div>
+                      <div className="font-medium text-gray-900">{PRIMARY_EMAIL}</div>
                       <div className="text-sm text-gray-600">General Enquiries</div>
                     </div>
                   </div>
@@ -125,14 +240,17 @@ export function Contact() {
               <CardContent className="p-6 text-center">
                 <Clock className="h-8 w-8 mx-auto mb-3" />
                 <h3 className="text-lg font-bold mb-2">24/7 Emergency Line</h3>
-                <div className="text-2xl font-bold mb-2">0800 123 4567</div>
+                <div className="text-2xl font-bold mb-2">{PRIMARY_PHONE_DISPLAY}</div>
                 <p className="text-red-100 text-sm mb-4">Round-the-clock response for urgent repairs and callouts.</p>
                 <Button
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-red-600 bg-transparent"
+                  asChild
                 >
-                  <Phone className="mr-2 h-4 w-4" />
-                  Call Emergency Line
+                  <a href={getPhoneLink()}>
+                    <Phone className="mr-2 h-4 w-4" />
+                    Call Emergency Line
+                  </a>
                 </Button>
               </CardContent>
             </Card>
@@ -144,7 +262,7 @@ export function Contact() {
                 <div className="space-y-3">
                   <div className="flex items-center text-sm">
                     <Shield className="h-4 w-4 text-red-600 mr-3" />
-                    <span>Fully insured & certified</span>
+                    <span>Fully insured & accredited</span>
                   </div>
                   <div className="flex items-center text-sm">
                     <Users className="h-4 w-4 text-red-600 mr-3" />
@@ -152,11 +270,11 @@ export function Contact() {
                   </div>
                   <div className="flex items-center text-sm">
                     <Award className="h-4 w-4 text-red-600 mr-3" />
-                    <span>92% attendance rate</span>
+                    <span>Reliable scheduling</span>
                   </div>
                   <div className="flex items-center text-sm">
                     <Clock className="h-4 w-4 text-red-600 mr-3" />
-                    <span>6hr average response time</span>
+                    <span>Fast response times</span>
                   </div>
                 </div>
               </CardContent>

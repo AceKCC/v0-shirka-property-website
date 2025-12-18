@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Phone, X } from "lucide-react"
 import { useState, useEffect } from "react"
+import { PRIMARY_PHONE_DISPLAY, getPhoneLink } from "@/lib/company"
 
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -69,27 +70,30 @@ export function Hero() {
                 size="lg"
                 variant="outline"
                 className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg bg-transparent rounded-none"
+                asChild
               >
-                <Phone className="mr-2 h-5 w-5" />
-                0800 123 4567
+                <a href={getPhoneLink()}>
+                  <Phone className="mr-2 h-5 w-5" />
+                  {PRIMARY_PHONE_DISPLAY}
+                </a>
               </Button>
             </div>
           </div>
 
           <div className="lg:col-span-3 flex lg:flex-col justify-center lg:justify-start items-center lg:items-end space-y-0 lg:space-y-8 space-x-8 lg:space-x-0 relative">
             <div className="text-right">
-              <div className="text-4xl lg:text-5xl font-bold mb-1 text-red-600">6hr</div>
-              <div className="text-sm text-gray-300 whitespace-nowrap">Avg Response Time</div>
+              <div className="text-4xl lg:text-5xl font-bold mb-1 text-red-600">Fast</div>
+              <div className="text-sm text-gray-300 whitespace-nowrap">Response Times</div>
               <div className="hidden lg:block w-16 h-px bg-gray-600 mt-4 ml-auto"></div>
             </div>
             <div className="text-right">
-              <div className="text-4xl lg:text-5xl font-bold mb-1 text-red-600">92%</div>
-              <div className="text-sm text-gray-300 whitespace-nowrap">Attendance Rate</div>
+              <div className="text-4xl lg:text-5xl font-bold mb-1 text-red-600">Reliable</div>
+              <div className="text-sm text-gray-300 whitespace-nowrap">Scheduling</div>
               <div className="hidden lg:block w-16 h-px bg-gray-600 mt-4 ml-auto"></div>
             </div>
             <div className="text-right">
-              <div className="text-4xl lg:text-5xl font-bold mb-1 text-red-600">95%</div>
-              <div className="text-sm text-gray-300 whitespace-nowrap">Tenant Satisfaction</div>
+              <div className="text-4xl lg:text-5xl font-bold mb-1 text-red-600">Quality</div>
+              <div className="text-sm text-gray-300 whitespace-nowrap">Workmanship</div>
             </div>
           </div>
         </div>
